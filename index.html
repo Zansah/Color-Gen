@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Anton+SC&family=Bebas+Neue&family=Changa+One:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif+TC:wght@200..900&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Color Generator</title>
+</head>
+<body>
+
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s;
+            text-align: center;
+            flex-direction: column  ;
+            padding: 0;
+        }
+
+        header{
+            width: 100%;
+            height: 300px;
+            background-color: transparent ;
+            position: fixed;
+            top: 0;
+            left: 20;
+            z-index: 1000; 
+            align-items: start;
+            display: flex;
+            
+
+
+        }
+
+        header img{
+            width: 200px;
+            
+
+        }
+
+        
+
+        #message {
+            font-size: 50px;
+            margin-bottom: 20px;
+            font-family: "Montserrat";
+            font-weight: 100;
+
+        }
+
+        #color-code {
+            font-size: 32px;
+            display: none;
+            font-family: "Montserrat"; 
+        }
+
+      
+
+        .montserrat-color-code{
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 100;
+            font-style:italic;
+        }
+
+           
+
+            
+
+
+    </style>
+
+    <header>
+        <!-- <img src="Paint_Bucket-removebg-preview.png" alt=""> -->
+    </header>
+
+    <div class="square">
+        <div id="message">Press the space bars</div>
+        <div id="color-code">#FFFFFF</div>
+    </div>
+
+
+    <script>
+
+        let isFirstPress = true; 
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function updateColor() {
+            const newColor = getRandomColor();
+            
+            document.body.style.backgroundColor = newColor;
+            
+            const colorCodeElement = document.getElementById('color-code');
+            colorCodeElement.textContent = newColor;
+            colorCodeElement.style.display = 'block'; 
+        }
+
+        updateColor();
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                if (isFirstPress) {
+                    document.getElementById('message').style.display = 'none';
+                    updateColor(); 
+                    isFirstPress = false; 
+                } else {
+                    updateColor(); 
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+</html> 
